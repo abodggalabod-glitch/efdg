@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع عبد الرحمن جيمز - الاحترافي للبرمجة والألعاب</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131c2e;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --code-bg: #05070b;
+            --border-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* الهيدر */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+
+        /* الأقسام */
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+        }
+
+        .section h2 {
+            color: #60a5fa;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .section p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* تنسيق الأكواد */
+        pre {
+            background-color: var(--code-bg);
+            color: #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 15px 0;
+            border: 1px solid #1e293b;
+            font-size: 0.95rem;
+        }
+
+        .note {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #93c5fd;
+        }
+
+        /* قسم اللعبة التفاعلية */
+        .game-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #090d16;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #3b82f6;
+            margin-top: 20px;
+        }
+
+        canvas {
+            background: #020408;
+            border: 2px solid #334155;
+            border-radius: 6px;
+            cursor: crosshair;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            max-width: 100%;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        .game-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s;
+            font-weight: bold;
+        }
+
+        .game-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>موقع عبد الرحمن جيمز</h1>
+            <p>منصتك الاحترافية الشاملة لتعلم البرمجة وتصميم الألعاب من الصفر وحتى الاحتراف!</p>
+        </header>
+
+        <!-- قسم اللعبة المصغرة داخل الموقع -->
+        <div class="section">
+            <h2>🎮 لعبة المصور الذكي (مدمجة داخل الموقع)</h2>
+            <p>هذه لعبة مصغرة برمجناها بلغة JavaScript داخل الموقع لتمثّل فكرة ألعاب التصويب. حرك الماوس لتوجيه السلاح، واضغط بالزر الأيسر لإطلاق النار على المربعات الحمراء قبل أن تصل إليك!</p>
+            
+            <div class="game-wrapper">
+                <div class="game-info">
+                    <span id="scoreText">النقاط: 0</span>
+                    <span id="healthText">الدم (الصحة): 100</span>
+                </div>
+                <canvas id="gameCanvas" width="700" height="400"></canvas>
+                <button class="game-btn" onclick="restartGame()">إعادة تشغيل اللعبة</button>
+            </div>
+        </div>
+
+        <!-- قسم لغة بايثون -->
+        <div class="section">
+            <h2>🐍 محطة لغة بايثون (Python) - البرمجة السهلة والقوية</h2>
+            <p>تعتبر لغة بايثون الخيار الأول لمطوري الألعاب والمبرمجين المبتدئين نظراً لسهولة قراءتها وكتابتها. إليك كود متقدم قليلاً يمثل نظام حساب نقاط اللاعب والتحقق من مستواه:</p>
+            
+            <pre><code># برنامج نظام مستويات اللاعب في بايثون
+def check_player_level(score):
+    if score >= 1000:
+        return "مستوى محترف (Pro Gamer)"
+    elif score >= 500:
+        return "مستوى متقدم (Advanced)"
+    else:
+        return "مستوى مبتدئ (Beginner)"
+
+# تجربة النظام
+player_name = "عبد الرحمن"
+player_score = 750
+
+print(f"أهلاً بك يا {player_name}!")
+level_status = check_player_level(player_score)
+print(f"حالتك الحالية: {level_status}")</code></pre>
+
+            <div class="note">
+                💡 <strong>مفهوم برمجي:</strong> نستخدم الكلمة المفتاحية <code>def</code> لإنشاء دالة (Function) تقوم بتنفيذ مهمة محددة وإرجاع النتيجة، مما يجعل الكود منظماً وقابلاً لإعادة الاستخدام.
+            </div>
+        </div>
+
+        <!-- قسم لغة سي بلس بلس -->
+        <div class="section">
+            <h2>⚙️️ محطة لغة سي بلس بلس (C++) - قوة الأداء وسرعة الألعاب</h2>
+            <p>تُعد لغة C++ العصب الرئيسي لأضخم ألعاب الكمبيوتر (مثل محركات الألعاب الكبرى) لأنها تتحكم بالذاكرة مباشرة وتمنح أداءً خارقاً. إليك كود يعرض إدارة طاقة السلاح وعدد الطلقات:</p>
+            
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Weapon {
+public:
+    string name;
+    int ammo;
+
+    // دالة لتجهيز السلاح
+    void shoot() {
+        if (ammo > 0) {
+            ammo--;
+            cout << "تم إطلاق رصاصة! الطلقات المتبقية: " << ammo << endl;
+        } else {
+            cout << "نفذت الرصاصات! قم بإعادة التعبئة (Reload)." << endl;
+        }
+    }
+};
+
+int main() {
+    Weapon rifle;
+    rifle.name = "قناص هجومي";
+    rifle.ammo = 3;
+
+    cout << "السلاح الحالي: " << rifle.name << endl;
+    rifle.shoot();
+    rifle.shoot();
+    rifle.shoot();
+    rifle.shoot(); // هنا ستنفذ الطلقات
+    
+    return 0;
+}</code></pre>
+
+            <div class="note">
+                💡 <strong>مفهوم برمجي:</strong> في لغة C++ نستعمل نظام البرمجة كائنية التوجه (OOP) عبر بناء `Class` لتمثيل كائنات اللعبة مثل الأسلحة واللاعبين بمرونة عالية جداً.
+            </div>
+        </div>
+
+        <footer>
+            جميع الحقوق محفوظة &copy; 2026 - موقع عبد الرحمن جيمز | صُنع بش شغف وإتقان للبرمجة والألعاب 🚀
+        </footer>
+    </div>
+
+    <!-- كود برمجة اللعبة التفاعلية داخل المتصفح -->
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let score = 0;
+        let health = 100;
+        let isGameOver = false;
+
+        // اللاعب (السلاح في الأسفل)
+        let gun = { x: canvas.width / 2, y: canvas.height - 30, width: 40, height: 20 };
+
+        // المجسمات المربعة العدوة
+        let targets = [];
+        let bullets = [];
+
+        // تحريك السلاح حسب مكان الماوس أفقياً
+        canvas.addEventListener("mousemove", (e) => {
+            const rect = canvas.getBoundingClientRect();
+            gun.x = e.clientX - rect.left - gun.width / 2;
+        });
+
+        // إطلاق النار عند النقر بالماوس
+        canvas.addEventListener("click", () => {
+            if (isGameOver) return;
+            bullets.push({ x: gun.x + gun.width / 2 - 4, y: gun.y, width: 8, height: 15, speed: 7 });
+        });
+
+        // توليد مربعات الأعداء بشكل دوري
+        setInterval(() => {
+            if (isGameOver) return;
+            let size = 30;
+            let x = Math.random() * (canvas.width - size);
+            let speed = 1.5 + Math.random() * 1.5;
+            targets.push({ x: x, y: -size, width: size, height: size, speed: speed });
+        }, 1200);
+
+        function restartGame() {
+            score = 0;
+            health = 100;
+            targets = [];
+            bullets = [];
+            isGameOver = false;
+            loop();
+        }
+
+        // حلقة اللعبة الأساسية (Game Loop)
+        function loop() {
+            if (isGameOver) return;
+
+            // مسح الشاشة
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // رسم وتحديث الرصاصات
+            ctx.fillStyle = "#38bdf8";
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                let b = bullets[i];
+                b.y -= b.speed;
+                ctx.fillRect(b.x, b.y, b.width, b.height);
+
+                // إزالة الرصاصة إذا خرجت من الشاشة
+                if (b.y < 0) {
+                    bullets.splice(i, 1);
+                }
+            }
+
+            // رسم وتحديث الأعداء (المربعات)
+            ctx.fillStyle = "#ef4444";
+            for (let i = targets.length - 1; i >= 0; i--) {
+                let t = targets.get ? targets[i] : targets[i]; // syntax safe
+                t.y += t.speed;
+                ctx.fillRect(t.x, t.y, t.width, t.height);
+
+                // التحقق من اصطدام الرصاصة بالعدو
+                for (let j = bullets.length - 1; j >= 0; j--) {
+                    let b = bullets[j];
+                    if (b.x < t.x + t.width && b.x + b.width > t.x &&
+                        b.y < t.y + t.height && b.y + b.height > t.y) {
+                        // أصابت الرصاصة الهدف!
+                        score += 10;
+                        targets.splice(i, 1);
+                        bullets.splice(j, 1);
+                        break;
+                    }
+                }
+
+                // إذا وصل العدو لأسفل الشاشة ينقص دم اللاعب
+                if (t.y > canvas.height) {
+                    targets.splice(i, 1);
+                    health -= 15;
+                    if (health <= 0) {
+                        health = 0;
+                        isGameOver = true;
+                    }
+                }
+            }
+
+            // رسم السلاح الخاص باللاعب
+            ctx.fillStyle = "#22c55e";
+            ctx.fillRect(gun.x, gun.y, gun.width, gun.height);
+            ctx.fillStyle = "#3b82f6";
+            ctx.fillRect(gun.x + gun.width/2 - 4, gun.y - 10, 8, 10);
+
+            // تحديث النصوص في الواجهة
+            document.getElementById("scoreText").innerText = "النقاط: " + score;
+            document.getElementById("healthText").innerText = "الدم (الصحة): " + health;
+
+            if (isGameOver) {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "30px 'Segoe UI'";
+                ctx.textAlign = "center";
+                ctx.fillText("انتهت اللعبة! مجموع نقاطك: " + score, canvas.width / 2, canvas.height / 2);
+                ctx.font = "18px 'Segoe UI'";
+                ctx.fillStyle = "#94a3b8";
+                ctx.fillText("اضغط على زر إعادة التشغيل أدناه للعب مرة أخرى", canvas.width / 2, canvas.height / 2 + 40);
+                return;
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        // تشغيل اللعبة عند فتح الصفحة
+        loop();
+    </script>
+</body>
+</html>
